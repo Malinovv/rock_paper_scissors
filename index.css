@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
+
+body {
+  background-image: url(./src/background.svg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  font-family: "Play", sans-serif;
+}
+
+h1 {
+  color: #eff0d1;
+  font-size: 3em;
+  font-weight: 900;
+  margin: 2em;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  row-gap: 2em;
+  gap: 3em;
+  margin: 3em;
+}
+
+button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5em;
+  font-family: "Play", sans-serif;
+  font-size: 1.5em;
+  color: #eff0d1;
+  width: 10em;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: solid 0.2em #d7c0d0;
+  border-radius: 0.5em;
+  transition: background-color 0.3s, transform 0.3s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.9);
+}
+
+.icon {
+  display: block;
+  width: 100%;
+  height: 3em;
+  filter: brightness(0) invert(1);
+}
+
+.span {
+  display: block;
+}
+
+#rock {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#paper {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#scissors {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+button:hover {
+  border: solid 0.2em #eff0d1;
+  transform: translateY(-5px);
+}
+
+#result {
+  margin-top: 2.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+}

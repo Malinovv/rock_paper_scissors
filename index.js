@@ -47,23 +47,16 @@ function game() {
   let playerScore = 0;
   let computerScore = 0;
   let result;
-  for (let i = 0; i < 5; i++) {
-    computerChoice = getComputerChoice();
-    console.log(`Game ${i + 1}:`);
-    result = playGame(playerChoice, computerChoice);
-    console.log(result);
-    if (result.includes("win")) {
-      playerScore++;
-    } else if (result.includes("lose")) {
-      computerScore++;
-    }
+  // for (let i = 0; i < 5; i++) {}
+  computerChoice = getComputerChoice();
+  console.log(`Game ${i + 1}:`);
+  result = playGame(playerChoice, computerChoice);
+  console.log(result);
+  if (result.includes("win")) {
+    playerScore++;
+  } else if (result.includes("lose")) {
+    computerScore++;
   }
-  console.log("==========================");
-  console.log("GAME OVER!");
-  console.log("==========================");
-  console.log(`Player Score: ${playerScore}`);
-  console.log(`Computer Score: ${computerScore}`);
-  console.log("------------------------------------------");
   if (playerScore > computerScore) {
     console.log("Congratulations! You are the winner!");
   } else if (playerScore < computerScore) {
