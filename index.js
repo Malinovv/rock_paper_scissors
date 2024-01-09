@@ -1,5 +1,24 @@
-let playerChoice = prompt();
 let computerChoice = getComputerChoice();
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+let playerChoice = ["rock", "paper", "scissors"];
+let resultText = document.querySelector("#result");
+
+let playerScore = 0;
+let computerScore = 0;
+
+const rockButton = rock.addEventListener("click", function () {
+  playGame("rock", getComputerChoice());
+});
+
+const paperButton = paper.addEventListener("click", function () {
+  playGame("paper", getComputerChoice());
+});
+
+const scissorsButton = scissors.addEventListener("click", function () {
+  playGame("scissors", getComputerChoice());
+});
 
 function getComputerChoice() {
   const gameChoices = ["rock", "paper", "scissors"];
@@ -8,63 +27,38 @@ function getComputerChoice() {
 }
 
 function playGame(playerSelection, computerSelection) {
-  const convertLower = playerSelection.toLowerCase();
+  resultText.innerHTML = `You chose: ${playerSelection}<br>`;
+  resultText.innerHTML += `Computer chose: ${computerSelection}<br>`;
 
-  if (convertLower == "rock" && computerSelection == "rock") {
-    console.log("It's a tie");
-    return "tie";
-  } else if (convertLower == "scissors" && computerSelection == "scissors") {
-    console.log("It's a tie");
-    return "tie";
-  } else if (convertLower == "paper" && computerSelection == "paper") {
-    console.log("It's a tie");
-    return "tie";
-  } else if (convertLower == "rock" && computerSelection == "scissors") {
-    console.log("You WIN! Rock beats scissors");
-    return "win";
-  } else if (convertLower == "scissors" && computerSelection == "paper") {
-    console.log("You WIN! Scissors beats paper");
-    return "win";
-  } else if (convertLower == "paper" && computerSelection == "rock") {
-    console.log("You WIN! Paper beats rock");
-    return "win";
-  } else if (convertLower == "scissors" && computerSelection == "rock") {
-    console.log("You LOSE! Rock beats scissors");
-    return "lose";
-  } else if (convertLower == "paper" && computerSelection == "scissors") {
-    console.log("You LOSE! Scissors beats Paper");
-    return "lose";
-  } else if (convertLower == "rock" && computerSelection == "paper") {
-    console.log("You LOSE! Paper beats rock");
-    return "lose";
-  } else {
-    console.log("Invalid input. Try again.");
-    return "Invalid input. Try again.";
-  }
-}
-
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
-  let result;
-  // for (let i = 0; i < 5; i++) {}
-  computerChoice = getComputerChoice();
-  console.log(`Game ${i + 1}:`);
-  result = playGame(playerChoice, computerChoice);
-  console.log(result);
-  if (result.includes("win")) {
+  if (playerSelection === computerSelection) {
+    resultText.innerHTML += "It's a tie!<br>";
+  } else if (
+    (playerSelection === "rock" && computerSelection === "scissors") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "paper" && computerSelection === "rock")
+  ) {
+    resultText.innerHTML += `You WIN! ${playerSelection} beats ${computerSelection}<br>`;
     playerScore++;
-  } else if (result.includes("lose")) {
+  } else {
+    resultText.innerHTML += `You LOSE! ${computerSelection} beats ${playerSelection}<br>`;
     computerScore++;
   }
-  if (playerScore > computerScore) {
-    console.log("Congratulations! You are the winner!");
-  } else if (playerScore < computerScore) {
-    console.log("Sorry! You lost to the computer.");
-  } else {
-    console.log("=====================================");
-    console.log("ITS A TIE OVERALL");
+
+  resultText.innerHTML += `Player Score: ${playerScore} | Computer Score: ${computerScore}`;
+
+  if (playerScore + computerScore === 5) {
+    determineWinner();
   }
 }
 
-game();
+function determineWinner() {
+  if (playerScore > computerScore) {
+    resultText.innerHTML += "<br>Congratulations! You are the overall winner!";
+  } else if (playerScore < computerScore) {
+    resultText.innerHTML += "<br>Sorry! You lost to the computer overall.";
+  } else {
+    resultText.innerHTML += "<br>It's a tie overall!";
+  }
+  playerScore = 0;
+  computerScore = 0;
+}
